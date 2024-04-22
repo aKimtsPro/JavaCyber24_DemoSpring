@@ -1,0 +1,18 @@
+###
+GET http://localhost:8080/calcul
+Content-Type: application/json
+
+{
+  "a": 1,
+  "b": 2,
+  "operation": "d"
+}
+
+###
+GET http://localhost:8080/print/request
+
+###
+POST http://localhost:8080/name/add?name=pol
+
+###
+GET http://localhost:8080/name/get/0
