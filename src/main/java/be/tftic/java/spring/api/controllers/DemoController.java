@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
+@RequestMapping("/demo")
 public class DemoController {
 
     private final DemoService demoService;
@@ -22,7 +23,7 @@ public class DemoController {
         this.demoService = demoService;
     }
 
-    // GET - http://localhost:8080/hello
+    // GET - http://localhost:8080/demo/hello
     @GetMapping("/hello")
     public String helloWorld(){
         return "Hello World!";
