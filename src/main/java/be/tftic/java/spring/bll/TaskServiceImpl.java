@@ -59,4 +59,28 @@ public class TaskServiceImpl implements TaskService {
                 .filter(t -> t.getPriority() == priority)
                 .toList();
     }
+
+
+    @Override
+    public void deletePastTasks(boolean completed) {
+        // TODO implements
+    }
+
+    @Override
+    public void completeTask(long taskId) {
+        // TODO implements
+
+    }
+
+    @Override
+    public void updatePriority(long id, TaskPriority priority) {
+        // TODO implements
+
+    }
+
+    @Override
+    public List<Task> getUrgentTasks() {
+        // TODO implements
+        return List.of();
+    }
 }
