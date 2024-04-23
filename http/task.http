@@ -3,10 +3,10 @@ POST http://localhost:8080/tasks
 Content-Type: application/json
 
 {
-  "id": 1,
+  "id": 3,
   "title": "faire la vaisselle",
-  "priority": "LOW",
-  "deadline": "2024-10-10T10:00"
+  "priority": "MEDIUM",
+  "deadline": "2024-04-24T10:00"
 }
 
 ### Get All
@@ -16,7 +16,7 @@ GET http://localhost:8080/tasks
 GET http://localhost:8080/tasks/1
 
 ### Get By Priority
-GET http://localhost:8080/tasks?priority=MEDIUM
+GET http://localhost:8080/tasks?priority=LOW
 
 ### Delete By ID
 DELETE http://localhost:8080/tasks/1
@@ -28,6 +28,21 @@ Content-Type: application/json
 {
   "id": 1,
   "title": "faire la vaisselle",
-  "priority": "MEDIUM",
-  "deadline": "2024-10-10T10:00"
+  "priority": "LOW",
+  "deadline": "2024-04-10T10:00"
 }
+
+
+
+
+### Delete past tasks - V
+DELETE http://localhost:8080/tasks/past?completed=false
+
+### Complete - V
+PATCH http://localhost:8080/tasks/1/complete
+
+### Update priority - V
+PATCH http://localhost:8080/tasks/1?priority=MEDIUM
+
+### Get Urgent - V
+GET http://localhost:8080/tasks/urgent

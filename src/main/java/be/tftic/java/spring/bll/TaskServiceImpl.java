@@ -4,6 +4,8 @@ import be.tftic.java.spring.domain.models.Task;
 import be.tftic.java.spring.domain.models.TaskPriority;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -63,24 +65,40 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public void deletePastTasks(boolean completed) {
-        // TODO implements
+        LocalDateTime now = LocalDateTime.now();
+        Collection<Task> toDelete;
+
+        toDelete = tasks.stream()
+                .filter(t -> t.getDeadline().isBefore(now))
+                .filter( t ->  (!completed && t.getCompletedAt() == null) || (completed && t.getCompletedAt() != null))
+                .toList();
+
+        toDelete.forEach( tasks::remove );
     }
 
     @Override
     public void completeTask(long taskId) {
-        // TODO implements
+        Task task = this.getOne(taskId);
 
+        if( task.getCompletedAt() != null )
+            throw new RuntimeException("task already completed");
+
+        task.setCompletedAt( LocalDateTime.now() );
     }
 
     @Override
     public void updatePriority(long id, TaskPriority priority) {
-        // TODO implements
-
+        Task task = this.getOne(id);
+        task.setPriority( priority );
     }
 
     @Override
     public List<Task> getUrgentTasks() {
-        // TODO implements
-        return List.of();
+        LocalDateTime now = LocalDateTime.now();
+        return tasks.stream()
+                .filter( t -> t.getDeadline().isAfter(now) )
+                .filter( t -> t.getDeadline().getYear() == now.getYear() )
+                .filter( t -> t.getDeadline().getMonth() == now.getMonth() )
+                .toList();
     }
 }

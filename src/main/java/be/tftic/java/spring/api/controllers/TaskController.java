@@ -3,7 +3,6 @@ package be.tftic.java.spring.api.controllers;
 import be.tftic.java.spring.bll.TaskService;
 import be.tftic.java.spring.domain.models.Task;
 import be.tftic.java.spring.domain.models.TaskPriority;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,7 +43,6 @@ public class TaskController {
                 .build();
     }
 
-
     // GET - http://localhost:8080/tasks?priority=HIGH
     @GetMapping(params = "priority")
     public ResponseEntity<List<Task>> getByPriority(@RequestParam TaskPriority priority){
@@ -68,4 +66,36 @@ public class TaskController {
                 .build();
     }
 
+    // DELETE - http://localhost:8080/tasks/past?completed=true
+    @DeleteMapping("/past")
+    public ResponseEntity<Void> deletePastTasks(@RequestParam boolean completed){
+        taskService.deletePastTasks(completed);
+        return ResponseEntity.noContent()
+                .build();
+    }
+
+    // PATCH - http://localhost:8080/tasks/1/complete
+    @PatchMapping("/{id:\\d+}/complete")
+    public ResponseEntity<Void> completeTask(@PathVariable long id){
+        taskService.completeTask(id);
+        return ResponseEntity.noContent()
+                .build();
+    }
+
+    // PATCH - http://localhost:8080/tasks/1?priority=MEDIUM
+    @PatchMapping(value = "/{id:\\d+}", params = "priority")
+    public ResponseEntity<Void> updatePriority(
+            @PathVariable long id,
+            @RequestParam TaskPriority priority
+    ){
+       taskService.updatePriority(id, priority);
+       return ResponseEntity.noContent()
+               .build();
+    }
+
+    // GET - http://localhost:8080/tasks/urgent
+    @GetMapping("/urgent")
+    public ResponseEntity<List<Task>> getUrgent() {
+        return ResponseEntity.ok( taskService.getUrgentTasks() );
+    }
 }
