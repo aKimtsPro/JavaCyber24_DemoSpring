@@ -5,16 +5,7 @@ import be.tftic.java.spring.domain.models.TaskPriority;
 
 import java.util.List;
 
-public interface TaskService {
-
-    Task getOne(long id);
-    List<Task> getAll();
-
-    void create(Task task);
-
-    void update(Task task);
-
-    void delete(long id);
+public interface TaskService extends CrudService<Task, Long> {
 
     List<Task> getByPriority(TaskPriority priority);
 

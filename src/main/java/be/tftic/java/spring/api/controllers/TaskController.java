@@ -3,6 +3,8 @@ package be.tftic.java.spring.api.controllers;
 import be.tftic.java.spring.bll.TaskService;
 import be.tftic.java.spring.domain.models.Task;
 import be.tftic.java.spring.domain.models.TaskPriority;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Pattern;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

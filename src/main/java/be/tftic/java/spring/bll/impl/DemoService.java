@@ -1,4 +1,4 @@
-package be.tftic.java.spring.bll;
+package be.tftic.java.spring.bll.impl;
 
 import org.springframework.stereotype.Service;
 

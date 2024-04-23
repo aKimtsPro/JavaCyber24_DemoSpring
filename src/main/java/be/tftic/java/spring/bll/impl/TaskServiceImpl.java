@@ -1,5 +1,6 @@
-package be.tftic.java.spring.bll;
+package be.tftic.java.spring.bll.impl;
 
+import be.tftic.java.spring.bll.TaskService;
 import be.tftic.java.spring.domain.models.Task;
 import be.tftic.java.spring.domain.models.TaskPriority;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,7 @@ public class TaskServiceImpl implements TaskService {
     private final Set<Task> tasks = new HashSet<>();
 
     @Override
-    public Task getOne(long id) {
+    public Task getOne(Long id) {
         return tasks.stream()
                 .filter( t -> t.getId() == id )
                 .findFirst()
@@ -50,7 +51,7 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public void delete(long id) {
+    public void delete(Long id) {
         Task toDelete = this.getOne(id);
         this.tasks.remove(toDelete);
     }

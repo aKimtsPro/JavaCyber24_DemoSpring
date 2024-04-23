@@ -1,0 +1,11 @@
+spring:
+  banner:
+    location: classpath:banner.txt
+  application:
+    name: DemoSpring
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/carental
+    username: postgres
+    password: root
+    driver-class-name: org.postgresql.Driver
