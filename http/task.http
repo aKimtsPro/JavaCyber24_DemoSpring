@@ -1,0 +1,33 @@
+### Create task
+POST http://localhost:8080/tasks
+Content-Type: application/json
+
+{
+  "id": 1,
+  "title": "faire la vaisselle",
+  "priority": "LOW",
+  "deadline": "2024-10-10T10:00"
+}
+
+### Get All
+GET http://localhost:8080/tasks
+
+### Get One
+GET http://localhost:8080/tasks/1
+
+### Get By Priority
+GET http://localhost:8080/tasks?priority=MEDIUM
+
+### Delete By ID
+DELETE http://localhost:8080/tasks/1
+
+### Update
+PUT http://localhost:8080/tasks
+Content-Type: application/json
+
+{
+  "id": 1,
+  "title": "faire la vaisselle",
+  "priority": "MEDIUM",
+  "deadline": "2024-10-10T10:00"
+}

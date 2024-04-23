@@ -1,15 +1,15 @@
 package be.tftic.java.spring.domain.models;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Data
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Builder
 public class Task {
 
+    @EqualsAndHashCode.Include
     private long id;
     private String title;
     private String description;
