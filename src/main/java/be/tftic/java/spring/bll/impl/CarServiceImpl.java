@@ -33,19 +33,19 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public void create(Car entity) {
+    public Car create(Car entity) {
         if( carRepository.existsById(entity.getId()) )
             throw new EntityAlreadyExistsException(entity);
 
-        carRepository.save( entity );
+        return carRepository.save( entity );
     }
 
     @Override
-    public void update(Car entity) {
+    public Car update(Car entity) {
         if( !carRepository.existsById(entity.getId()) )
             throw new EntityNotFoundException(Car.class, "id", entity.getId());
 
-        carRepository.save( entity );
+        return carRepository.save( entity );
         // On ne veut pas que 'brand' et 'model' puisse être modifié
         // Autre solution => voire updatable dans @Column des variables
 //        Car toUpdate = this.getOne(entity.getId());
@@ -60,12 +60,13 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public void delete(Long id) {
+    public Car delete(Long id) {
 //        if( !carRepository.existsById(id) )
 //            throw new EntityNotFoundException(Car.class, "id", id);
 //        carRepository.deleteById(id);
 
         Car toRemove = this.getOne(id);
         carRepository.delete(toRemove);
+        return toRemove;
     }
 }

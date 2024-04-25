@@ -31,13 +31,15 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public void create(Task task) {
+    public Task create(Task task) {
         if( !tasks.add(task) )
             throw new RuntimeException("Task already exists");
+
+        return task;
     }
 
     @Override
-    public void update(Task task) {
+    public Task update(Task task) {
         // v1
 //        this.delete(task.getId());
 //        this.create(task);
@@ -48,12 +50,14 @@ public class TaskServiceImpl implements TaskService {
         toUpdate.setPriority( task.getPriority() );
         toUpdate.setDeadline( task.getDeadline() );
         toUpdate.setCompletedAt( task.getCompletedAt() );
+        return toUpdate;
     }
 
     @Override
-    public void delete(Long id) {
+    public Task delete(Long id) {
         Task toDelete = this.getOne(id);
         this.tasks.remove(toDelete);
+        return toDelete;
     }
 
     @Override
